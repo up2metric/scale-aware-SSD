@@ -1,0 +1,513 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scaleSSD.utils &mdash; Scale aware SSD  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="scaleSSD.models" href="scaleSSD.models.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Scale aware SSD
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="scaleSSD.html">scaleSSD</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="scaleSSD.data.html">scaleSSD.data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scaleSSD.engine.html">scaleSSD.engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scaleSSD.models.html">scaleSSD.models</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">scaleSSD.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-scaleSSD.utils.box_utils">scaleSSD.utils.box_utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-scaleSSD.utils.io_ops">scaleSSD.utils.io_ops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-scaleSSD.utils.losses">scaleSSD.utils.losses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-scaleSSD.utils.minibatch_sampling">scaleSSD.utils.minibatch_sampling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="scaleSSD.html#module-scaleSSD.train">scaleSSD.train</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Scale aware SSD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="scaleSSD.html">scaleSSD</a> &raquo;</li>
+        
+      <li>scaleSSD.utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/source/scaleSSD.utils.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="scalessd-utils">
+<h1>scaleSSD.utils<a class="headerlink" href="#scalessd-utils" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-scaleSSD.utils.box_utils">
+<span id="scalessd-utils-box-utils"></span><h2>scaleSSD.utils.box_utils<a class="headerlink" href="#module-scaleSSD.utils.box_utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="scaleSSD.utils.box_utils.calculate_iou">
+<code class="sig-prename descclassname"><span class="pre">scaleSSD.utils.box_utils.</span></code><code class="sig-name descname"><span class="pre">calculate_iou</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">box1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.utils.box_utils.calculate_iou" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates IoU between two boxes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>box1</strong> (<em>list</em><em>[</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>]</em>) – first boss in [x,y,w,h] format</p></li>
+<li><p><strong>box2</strong> (<em>list</em><em>[</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>]</em>) – second boss in [x,y,w,h] format</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>iou value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="scaleSSD.utils.box_utils.extract_all_anchor_boxes">
+<code class="sig-prename descclassname"><span class="pre">scaleSSD.utils.box_utils.</span></code><code class="sig-name descname"><span class="pre">extract_all_anchor_boxes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmap_sizes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.utils.box_utils.extract_all_anchor_boxes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract anchor boxes on all feature map positions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_shape</strong> (<em>tuple</em><em>(</em><em>int</em><em>, </em><em>int</em><em>)</em>) – width and height of model’s
+input image</p></li>
+<li><p><strong>fmap_sizes</strong> (<em>list</em><em>(</em><em>(</em><em>int</em><em>,</em><em>int</em><em>)</em><em>..</em><em>)</em>) – list of width, height tuples
+of all feature maps</p></li>
+<li><p><strong>anchors</strong> (<em>list</em><em>(</em><em>list</em><em>(</em><em>(</em><em>int</em><em>,</em><em>int</em><em>)</em><em>..</em><em>)</em><em>..</em><em>)</em>) – contains anchor size for all
+feature maps</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>all calculated anchor positions</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="scaleSSD.utils.box_utils.get_anchor_boxes">
+<code class="sig-prename descclassname"><span class="pre">scaleSSD.utils.box_utils.</span></code><code class="sig-name descname"><span class="pre">get_anchor_boxes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmap_sizes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receptive_windows</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.utils.box_utils.get_anchor_boxes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all anchor box positions for a specific
+receptive window</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_shape</strong> (<em>tuple</em><em>(</em><em>int</em><em>, </em><em>int</em><em>)</em>) – width and height of model’s
+input image</p></li>
+<li><p><strong>fmap_sizes</strong> (<em>list</em><em>(</em><em>(</em><em>int</em><em>,</em><em>int</em><em>)</em><em>..</em><em>)</em>) – list of width, height tuples
+of all feature maps</p></li>
+<li><p><strong>anchors</strong> (<em>list</em><em>(</em><em>list</em><em>(</em><em>(</em><em>int</em><em>,</em><em>int</em><em>)</em><em>..</em><em>)</em><em>..</em><em>)</em>) – contains anchor size for all
+feature maps</p></li>
+<li><p><strong>receptive_windows</strong> (<em>list</em><em>(</em><em>(</em><em>int</em><em>,</em><em>int</em><em>)</em><em>..</em><em>)</em>) – list of receptive windows with
+dimensions relevant to the input image size. They specify
+where to extract anchor positions.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>all calculated anchor positions</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-scaleSSD.utils.io_ops">
+<span id="scalessd-utils-io-ops"></span><h2>scaleSSD.utils.io_ops<a class="headerlink" href="#module-scaleSSD.utils.io_ops" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="scaleSSD.utils.io_ops.json_to_dict">
+<code class="sig-prename descclassname"><span class="pre">scaleSSD.utils.io_ops.</span></code><code class="sig-name descname"><span class="pre">json_to_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.utils.io_ops.json_to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a json to python dictionary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>json_file</strong> (<em>str</em>) – json file to load</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dictionary of loaded json</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="scaleSSD.utils.io_ops.save_dict">
+<code class="sig-prename descclassname"><span class="pre">scaleSSD.utils.io_ops.</span></code><code class="sig-name descname"><span class="pre">save_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.utils.io_ops.save_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves dictionary to json format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>json_dict</strong> (<em>dict</em>) – dictionary to save</p></li>
+<li><p><strong>output_file</strong> (<em>str</em>) – file to save the outputed json</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-scaleSSD.utils.losses">
+<span id="scalessd-utils-losses"></span><h2>scaleSSD.utils.losses<a class="headerlink" href="#module-scaleSSD.utils.losses" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="scaleSSD.utils.losses.ODLoss">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">scaleSSD.utils.losses.</span></code><code class="sig-name descname"><span class="pre">ODLoss</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minibatch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_weights</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.utils.losses.ODLoss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="simple">
+<dt>Object detection loss class. Has a cross entropy and</dt><dd><p>a regression component.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bbox_lamda</strong> (<em>float</em>) – regression lamda factor</p></li>
+<li><p><strong>minibatch_size</strong> (<em>int</em>) – maximum size of the minibatch</p></li>
+<li><p><strong>cls_lamda</strong> (<em>float</em>) – classification lamda factor</p></li>
+<li><p><strong>sampler</strong> (<em>str</em>) – minibatch sampler type. Can be
+‘dns’ or ‘basic’</p></li>
+<li><p><strong>class_weights</strong> (<em>list</em><em>[</em><em>float...</em><em>] or </em><em>None</em>) – list of weights for each category</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="scaleSSD.utils.losses.ODLoss.calc_bbox_loss">
+<code class="sig-name descname"><span class="pre">calc_bbox_loss</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reg_gts_minibatch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_pred_minibatch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.utils.losses.ODLoss.calc_bbox_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates bounding box regression loss</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reg_gts_minibatch</strong> (<em>torch.Tensor of shape</em><em> [</em><em>n_samples</em><em>, </em><em>1</em><em>]</em>) – ground truth minibatch</p></li>
+<li><p><strong>reg_pred_minibatch</strong> (<em>torch.Tensor of shape</em><em> [</em><em>n_samples</em><em>, </em><em>n_classes</em><em>]</em>) – predicted  minibatch</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>smooth_l1 loss</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="scaleSSD.utils.losses.ODLoss.calc_ce_loss">
+<code class="sig-name descname"><span class="pre">calc_ce_loss</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls_gts_minibatch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cls_pred_minibatch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.utils.losses.ODLoss.calc_ce_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates classification cross-entropy loss</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cls_gts_minibatch</strong> (<em>torch.Tensor of shape</em><em> [</em><em>n_samples</em><em>, </em><em>1</em><em>]</em>) – ground truth minibatch</p></li>
+<li><p><strong>cls_pred_minibatch</strong> (<em>torch.Tensor of shape</em><em> [</em><em>n_samples</em><em>, </em><em>n_classes</em><em>]</em>) – predicted  minibatch</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>cross entropy loss</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="scaleSSD.utils.losses.ODLoss.forward">
+<code class="sig-name descname"><span class="pre">forward</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.utils.losses.ODLoss.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forwards loss calculation and returns loss</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>preds</strong> (<em>torch.Tensor</em>) – model predicted predictions</p></li>
+<li><p><strong>targets</strong> (<em>torch.Tensor</em>) – annotation targets</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>total loss (cross entropy + regression loss)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="scaleSSD.utils.losses.ODLoss.training">
+<code class="sig-name descname"><span class="pre">training</span></code><em class="property"><span class="pre">:</span> <span class="pre">bool</span></em><a class="headerlink" href="#scaleSSD.utils.losses.ODLoss.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-scaleSSD.utils.minibatch_sampling">
+<span id="scalessd-utils-minibatch-sampling"></span><h2>scaleSSD.utils.minibatch_sampling<a class="headerlink" href="#module-scaleSSD.utils.minibatch_sampling" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="scaleSSD.utils.minibatch_sampling.BaseSampler">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">scaleSSD.utils.minibatch_sampling.</span></code><code class="sig-name descname"><span class="pre">BaseSampler</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minibatch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.utils.minibatch_sampling.BaseSampler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base sampler class for detection minibatch sampling</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>minibatch_size</strong> (<em>int</em>) – total size of sampled minibatches</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="scaleSSD.utils.minibatch_sampling.BaseSampler.filter_tensors">
+<code class="sig-name descname"><span class="pre">filter_tensors</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.utils.minibatch_sampling.BaseSampler.filter_tensors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies specified mask to each tensor in the list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tensors</strong> (<em>list</em><em>[</em><em>torch.Tensor...</em><em>]</em>) – list of torch tensors to apply the mask to</p></li>
+<li><p><strong>mask</strong> (<em>bool</em>) – mask to apply</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of filtered tensors</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list[torch.Tensor…]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="scaleSSD.utils.minibatch_sampling.BaseSampler.sample_minibatches">
+<code class="sig-name descname"><span class="pre">sample_minibatches</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls_gts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cls_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_gts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.utils.minibatch_sampling.BaseSampler.sample_minibatches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample minibatches by keeping difficult positives and negatives</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cls_gts</strong> (<em>torch.Tensor</em>) – ground truth classification tensor</p></li>
+<li><p><strong>cls_pred</strong> (<em>torch.Tensor</em>) – predicted classification tensor</p></li>
+<li><p><strong>reg_gts</strong> (<em>torch.Tensor</em>) – ground truth regression tensor</p></li>
+<li><p><strong>reg_pred</strong> (<em>torch.Tensor</em>) – predicted regression tensor</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple of sampled tensors</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple(torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="scaleSSD.utils.minibatch_sampling.DynamicNegativeSampler">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">scaleSSD.utils.minibatch_sampling.</span></code><code class="sig-name descname"><span class="pre">DynamicNegativeSampler</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minibatch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.utils.minibatch_sampling.DynamicNegativeSampler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#scaleSSD.utils.minibatch_sampling.BaseSampler" title="scaleSSD.utils.minibatch_sampling.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">scaleSSD.utils.minibatch_sampling.BaseSampler</span></code></a></p>
+<p>Dynamic negative sampler class for detection minibatch sampling.
+Keeps sampling positives and missclassified negatives</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>minibatch_size</strong> (<em>int</em>) – total size of sampled minibatches</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="scaleSSD.utils.minibatch_sampling.DynamicNegativeSampler.sample_minibatches">
+<code class="sig-name descname"><span class="pre">sample_minibatches</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls_gts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cls_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_gts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.utils.minibatch_sampling.DynamicNegativeSampler.sample_minibatches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample minibatches by keeping all positives and missclassified negatives</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cls_gts</strong> (<em>torch.Tensor</em>) – ground truth classification tensor</p></li>
+<li><p><strong>cls_pred</strong> (<em>torch.Tensor</em>) – predicted classification tensor</p></li>
+<li><p><strong>reg_gts</strong> (<em>torch.Tensor</em>) – ground truth regression tensor</p></li>
+<li><p><strong>reg_pred</strong> (<em>torch.Tensor</em>) – predicted regression tensor</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple of sampled tensors</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple(torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-scaleSSD.utils"></span></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="scaleSSD.models.html" class="btn btn-neutral float-left" title="scaleSSD.models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Up2metric.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,480 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scaleSSD.models &mdash; Scale aware SSD  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="scaleSSD.utils" href="scaleSSD.utils.html" />
+    <link rel="prev" title="scaleSSD.engine" href="scaleSSD.engine.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Scale aware SSD
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="scaleSSD.html">scaleSSD</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="scaleSSD.data.html">scaleSSD.data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scaleSSD.engine.html">scaleSSD.engine</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">scaleSSD.models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-scaleSSD.models.bbox_mapper">scaleSSD.models.bbox_mapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-scaleSSD.models.custom_ssd">scaleSSD.models.custom_ssd</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="scaleSSD.utils.html">scaleSSD.utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scaleSSD.html#module-scaleSSD.train">scaleSSD.train</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Scale aware SSD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="scaleSSD.html">scaleSSD</a> &raquo;</li>
+        
+      <li>scaleSSD.models</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/source/scaleSSD.models.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="scalessd-models">
+<h1>scaleSSD.models<a class="headerlink" href="#scalessd-models" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-scaleSSD.models.bbox_mapper">
+<span id="scalessd-models-bbox-mapper"></span><h2>scaleSSD.models.bbox_mapper<a class="headerlink" href="#module-scaleSSD.models.bbox_mapper" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="scaleSSD.models.bbox_mapper.BboxDecoder">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">scaleSSD.models.bbox_mapper.</span></code><code class="sig-name descname"><span class="pre">BboxDecoder</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_anchor_boxes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conf_thres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.models.bbox_mapper.BboxDecoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>This class is responsible for decoding the output of the Custom SSD
+model into bounding boxes. This class is a nn.Module and can be appended
+to the Custom SSD model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_anchor_boxes</strong> (<em>numpy array</em>) – array containing all the anchor boxes coordinates</p></li>
+<li><p><strong>input_shape</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – the image shape expected by the model</p></li>
+<li><p><strong>conf_thres</strong> (<em>float</em><em>, </em><em>optional</em>) – the minimum confidence threshold that decided
+whether to keep or drop the box, defaults to 0.3</p></li>
+<li><p><strong>max_num</strong> (<em>int</em><em>, </em><em>optional</em>) – maximum number of boxes to keep,
+defaults to 300</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="scaleSSD.models.bbox_mapper.BboxDecoder.decalc_offsets">
+<code class="sig-name descname"><span class="pre">decalc_offsets</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset_annos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.models.bbox_mapper.BboxDecoder.decalc_offsets" title="Permalink to this definition">¶</a></dt>
+<dd><p>De-calculates dimension offsets of annotations, based on their
+reference anchors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>offset_annos</strong> (<em>torch.Tensor</em>) – the offseted annotations</p></li>
+<li><p><strong>anchors</strong> (<em>torch.Tensor</em>) – the anchors to use</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array containing de-offseted annotations</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="scaleSSD.models.bbox_mapper.BboxDecoder.forward">
+<code class="sig-name descname"><span class="pre">forward</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.models.bbox_mapper.BboxDecoder.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward function for the BboxDecoder layer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tuple</em><em>(</em><em>torch.Tensor</em><em>, </em><em>torch.Tensor</em><em>)</em>) – tuple of torch Tensors, containing the output
+data of the Custom SSD model</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple containing Custom SSD output data as well as
+the decoded boxes, scores and classes</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple(torch.Tensor, torch.Tensor, list, list, list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="scaleSSD.models.bbox_mapper.BboxDecoder.training">
+<code class="sig-name descname"><span class="pre">training</span></code><em class="property"><span class="pre">:</span> <span class="pre">bool</span></em><a class="headerlink" href="#scaleSSD.models.bbox_mapper.BboxDecoder.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="scaleSSD.models.bbox_mapper.BboxEncoder">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">scaleSSD.models.bbox_mapper.</span></code><code class="sig-name descname"><span class="pre">BboxEncoder</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_anchor_boxes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmap_sizes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_classes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.models.bbox_mapper.BboxEncoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is responsible for encoding the annotation boxes
+into the format expected by the Custom SSD model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_anchor_boxes</strong> (<em>numpy array</em>) – array containing all the anchor boxes coordinates</p></li>
+<li><p><strong>input_shape</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – the image shape expected by the model</p></li>
+<li><p><strong>fmap_sizes</strong> (<em>list</em><em>[</em><em>tuple</em><em>[</em><em>int</em><em>,</em><em>int</em><em>]</em><em>..</em><em>]</em>) – a list of tuples containing the sizes of feature map
+outputs of the model</p></li>
+<li><p><strong>anchors</strong> (<em>list</em><em>[</em><em>numpy.array...</em><em>]</em>) – list containing the anchors per feature map output</p></li>
+<li><p><strong>no_classes</strong> (<em>int</em>) – the number of classes outputed by the model</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="scaleSSD.models.bbox_mapper.BboxEncoder.calc_offsets">
+<code class="sig-name descname"><span class="pre">calc_offsets</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.models.bbox_mapper.BboxEncoder.calc_offsets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates dimension offsets of annotations based on anchors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annos</strong> (<em>numpy.array</em>) – the annotations to offset</p></li>
+<li><p><strong>anchors</strong> (<em>numpy.array</em>) – the anchors to use</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array containing offseted annotations</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="scaleSSD.models.bbox_mapper.BboxEncoder.encode_annos">
+<code class="sig-name descname"><span class="pre">encode_annos</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_thres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_thres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.models.bbox_mapper.BboxEncoder.encode_annos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encodes annotations on fixed-dimension array expected by the model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annos</strong> (<em>numpy.array</em>) – the annotations to encode</p></li>
+<li><p><strong>classes</strong> (<em>numpy.array</em>) – the annotation classes to encode</p></li>
+<li><p><strong>min_thres</strong> (<em>float</em><em>, </em><em>optional</em>) – the minimum accepted iou_threshold for assignment,
+defaults to 0.4</p></li>
+<li><p><strong>max_thres</strong> (<em>float</em><em>, </em><em>optional</em>) – the maximum accepted iou_threshold for assignment,
+defaults to 0.7</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple of encoded classification and bounding box offset tensors</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple[torch.Tensor, torch.Tensor]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="scaleSSD.models.bbox_mapper.BboxNMS">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">scaleSSD.models.bbox_mapper.</span></code><code class="sig-name descname"><span class="pre">BboxNMS</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nms_thres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.models.bbox_mapper.BboxNMS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>This class is responsible for applying NMS to the outputs of the
+BboxDecoder layer. This class is a nn.Module and can be appended
+to the Custom SSD model, after BboxDecoder layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>nms_thres</strong> (<em>float</em><em>, </em><em>optional</em>) – nms threshold to use,
+defaults to 0.3</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="scaleSSD.models.bbox_mapper.BboxNMS.forward">
+<code class="sig-name descname"><span class="pre">forward</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.models.bbox_mapper.BboxNMS.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward function for the BboxNMS layer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tuple</em><em>(</em><em>torch.Tensor</em><em>, </em><em>torch.Tensor</em><em>, </em><em>list</em><em>, </em><em>list</em><em>, </em><em>list</em><em>)</em>) – tuple containing Custom SSD output data as well as
+the decoded boxes, scores and classes</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple containing Custom SSD output data as well as
+the nms filtered boxes, scores and classes</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple(torch.Tensor, torch.Tensor, list, list, list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="scaleSSD.models.bbox_mapper.BboxNMS.training">
+<code class="sig-name descname"><span class="pre">training</span></code><em class="property"><span class="pre">:</span> <span class="pre">bool</span></em><a class="headerlink" href="#scaleSSD.models.bbox_mapper.BboxNMS.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-scaleSSD.models.custom_ssd">
+<span id="scalessd-models-custom-ssd"></span><h2>scaleSSD.models.custom_ssd<a class="headerlink" href="#module-scaleSSD.models.custom_ssd" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="scaleSSD.models.custom_ssd.CustomSSD">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">scaleSSD.models.custom_ssd.</span></code><code class="sig-name descname"><span class="pre">CustomSSD</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[4,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">4]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[32,</span> <span class="pre">64,</span> <span class="pre">512,</span> <span class="pre">256]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.models.custom_ssd.CustomSSD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Describes the custom ssd model architecture</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k_list</strong> (<em>list</em><em>[</em><em>int...</em><em>]</em>) – list containing the number of anchors 
+for each output feature map</p></li>
+<li><p><strong>no_classes</strong> (<em>int</em>) – the number of classes for the model to output</p></li>
+<li><p><strong>out_filters</strong> (<em>list</em><em>[</em><em>int...</em><em>]</em>) – the number of filters for each output branch</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="scaleSSD.models.custom_ssd.CustomSSD.forward">
+<code class="sig-name descname"><span class="pre">forward</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.models.custom_ssd.CustomSSD.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward pass of the model. Creates the output based on the input</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>torch.Tensor</em>) – the input tensor to forward to the model</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a tuple containing the output classification and regression Tensors</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple[torch.Tensor, torch.Tensor]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="scaleSSD.models.custom_ssd.CustomSSD.training">
+<code class="sig-name descname"><span class="pre">training</span></code><em class="property"><span class="pre">:</span> <span class="pre">bool</span></em><a class="headerlink" href="#scaleSSD.models.custom_ssd.CustomSSD.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="scaleSSD.models.custom_ssd.create_detection_model">
+<code class="sig-prename descclassname"><span class="pre">scaleSSD.models.custom_ssd.</span></code><code class="sig-name descname"><span class="pre">create_detection_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">anchors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.models.custom_ssd.create_detection_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the detection custom SSD model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>anchors</strong> (<em>list</em>) – list of anchors per fmap</p></li>
+<li><p><strong>no_classes</strong> (<em>int</em>) – the number of outputed classes</p></li>
+<li><p><strong>input_size</strong> (<em>tuple</em><em>(</em><em>int</em><em>, </em><em>int</em><em>)</em>) – a tuple describing the input size of an image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a tuple containing the model layers and the bbox encoder</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple(nn.Module, nn.Module, nn.Module), <a class="reference internal" href="#scaleSSD.models.bbox_mapper.BboxEncoder" title="scaleSSD.models.bbox_mapper.BboxEncoder">BboxEncoder</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="scaleSSD.models.custom_ssd.od_head_reshape">
+<code class="sig-prename descclassname"><span class="pre">scaleSSD.models.custom_ssd.</span></code><code class="sig-name descname"><span class="pre">od_head_reshape</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls_branch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_branch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_classes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.models.custom_ssd.od_head_reshape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reshapes object detection output feature maps so that they
+can be concatenated</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cls_branch</strong> (<em>torch.Tensor</em>) – the classification output branch to reshape</p></li>
+<li><p><strong>reg_branch</strong> (<em>torch.Tensor</em>) – the regression output branch to reshape</p></li>
+<li><p><strong>k</strong> (<em>int</em>) – the number of outputed anchors in the feature map</p></li>
+<li><p><strong>no_classes</strong> (<em>int</em>) – the number of outputed classes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a tuple containing the reshaped classification and regression Tensors</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple[torch.Tensor, torch.Tensor]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-scaleSSD.models"></span></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="scaleSSD.utils.html" class="btn btn-neutral float-right" title="scaleSSD.utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="scaleSSD.engine.html" class="btn btn-neutral float-left" title="scaleSSD.engine" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Up2metric.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

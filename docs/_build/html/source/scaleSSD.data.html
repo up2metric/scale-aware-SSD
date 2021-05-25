@@ -1,0 +1,445 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scaleSSD.data &mdash; Scale aware SSD  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="scaleSSD.engine" href="scaleSSD.engine.html" />
+    <link rel="prev" title="scaleSSD" href="scaleSSD.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Scale aware SSD
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="scaleSSD.html">scaleSSD</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">scaleSSD.data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-scaleSSD.data.coco_dataset">scaleSSD.data.coco_dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-scaleSSD.data.data_modules">scaleSSD.data.data_modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-scaleSSD.data.transforms">scaleSSD.data.transforms</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="scaleSSD.engine.html">scaleSSD.engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scaleSSD.models.html">scaleSSD.models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scaleSSD.utils.html">scaleSSD.utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scaleSSD.html#module-scaleSSD.train">scaleSSD.train</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Scale aware SSD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="scaleSSD.html">scaleSSD</a> &raquo;</li>
+        
+      <li>scaleSSD.data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/source/scaleSSD.data.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="scalessd-data">
+<h1>scaleSSD.data<a class="headerlink" href="#scalessd-data" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-scaleSSD.data.coco_dataset">
+<span id="scalessd-data-coco-dataset"></span><h2>scaleSSD.data.coco_dataset<a class="headerlink" href="#module-scaleSSD.data.coco_dataset" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="scaleSSD.data.coco_dataset.COCODataset">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">scaleSSD.data.coco_dataset.</span></code><code class="sig-name descname"><span class="pre">COCODataset</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annos_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annos_encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.data.coco_dataset.COCODataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Generic</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.utils.data.dataset.T_co</span></code>]</p>
+<p>This is a class that maps a coco formatted dataset
+to the custom ssd model rgb input</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>step</strong> (<em>str</em>) – the train procedure step (train, val, test)</p></li>
+<li><p><strong>annos_path</strong> (<em>str</em>) – the path to the annotations file</p></li>
+<li><p><strong>image_dir</strong> (<em>str</em>) – the path to the images directory</p></li>
+<li><p><strong>input_size</strong> (<em>tuple</em><em>[</em><em>int</em><em>,</em><em>int</em><em>]</em>) – tuple containing the image size 
+expected by the model</p></li>
+<li><p><strong>annos_encoder</strong> (<a class="reference internal" href="scaleSSD.models.html#scaleSSD.models.bbox_mapper.BboxEncoder" title="scaleSSD.models.bbox_mapper.BboxEncoder"><em>BboxEncoder</em></a>) – instance of BboxEncoder, responsible
+for encoding annotation data</p></li>
+<li><p><strong>random_seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the random seed to initialize dataset spliting,
+defaults to 0</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="scaleSSD.data.coco_dataset.get_step_ids">
+<code class="sig-prename descclassname"><span class="pre">scaleSSD.data.coco_dataset.</span></code><code class="sig-name descname"><span class="pre">get_step_ids</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.15</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.data.coco_dataset.get_step_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get datapoint ids for each train procedure step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>total_ids</strong> (<em>list</em><em>[</em><em>int...</em><em>]</em>) – list containing the total dataset ids</p></li>
+<li><p><strong>random_seed</strong> (<em>int</em>) – the ransom seed specifying the spliting 
+of the dataset</p></li>
+<li><p><strong>val_ratio</strong> (<em>float</em><em>, </em><em>optional</em>) – specifies the percentage of the training data
+to be used for validation, defaults to 0.15</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the chosen datapoint ids</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list[int…]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="scaleSSD.data.coco_dataset.process_img_data">
+<code class="sig-prename descclassname"><span class="pre">scaleSSD.data.coco_dataset.</span></code><code class="sig-name descname"><span class="pre">process_img_data</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annos_mapper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.data.coco_dataset.process_img_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process image data to make them ready for the model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annos_mapper</strong> (<em>Union</em><em>(</em><em>BboxMapper</em><em>, </em><em>MasksMapper</em><em>)</em>) – maps annotation data to a format ready
+for the model. Can be either a BboxMapper or a MasksMapper</p></li>
+<li><p><strong>input_size</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – tuple containing the input size
+of the model</p></li>
+<li><p><strong>transformer</strong> (<em>albumentations.Compose</em>) – it will apply transforms to an input
+image and annotation data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict containing the processed image data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-scaleSSD.data.data_modules">
+<span id="scalessd-data-data-modules"></span><h2>scaleSSD.data.data_modules<a class="headerlink" href="#module-scaleSSD.data.data_modules" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="scaleSSD.data.data_modules.DataModule">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">scaleSSD.data.data_modules.</span></code><code class="sig-name descname"><span class="pre">DataModule</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.data.data_modules.DataModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pytorch_lightning.core.datamodule.LightningDataModule</span></code></p>
+<p>This is a class, responsible for initialing 
+the datasets for each step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batch_size</strong> (<em>int</em>) – the max size of each batch</p></li>
+<li><p><strong>input_size</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – tuple containing the input size
+of the model</p></li>
+<li><p><strong>data_paths</strong> (<em>dict</em>) – dict containing paths for train 
+and test datasets</p></li>
+<li><p><strong>no_classes</strong> (<em>int</em>) – number of classes in the dataset</p></li>
+<li><p><strong>annos_encoder</strong> (<a class="reference internal" href="scaleSSD.models.html#scaleSSD.models.bbox_mapper.BboxEncoder" title="scaleSSD.models.bbox_mapper.BboxEncoder"><em>BboxEncoder</em></a>) – instance of BboxEncoder, responsible
+for encoding bounding box annotations</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="scaleSSD.data.data_modules.DataModule.get_dataset">
+<code class="sig-name descname"><span class="pre">get_dataset</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rseed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.data.data_modules.DataModule.get_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and return a dataset for each step (train, val, test)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>step</strong> (<em>str</em>) – the the of the train procedure. Can be (train, test, val)</p></li>
+<li><p><strong>rseed</strong> (<em>int</em><em>, </em><em>optional</em>) – the random seed to initialize dataset spliting,
+defaults to 0</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the created dataset</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>torch.utils.data.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="scaleSSD.data.data_modules.DataModule.my_collate">
+<code class="sig-name descname"><span class="pre">my_collate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.data.data_modules.DataModule.my_collate" title="Permalink to this definition">¶</a></dt>
+<dd><p>A custom collate function to group batch data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>batch</strong> (<em>list</em><em>[</em><em>dict...</em><em>]</em>) – a list of dicts containing the batch elements</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a dict containing the grouped batch data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="scaleSSD.data.data_modules.DataModule.prepare_data">
+<code class="sig-name descname"><span class="pre">prepare_data</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.data.data_modules.DataModule.prepare_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to create and prepare datasets</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="scaleSSD.data.data_modules.DataModule.test_dataloader">
+<code class="sig-name descname"><span class="pre">test_dataloader</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.data.data_modules.DataModule.test_dataloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the test dataloader</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the test dataloader</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>torch.utils.data.Dataloader</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="scaleSSD.data.data_modules.DataModule.train_dataloader">
+<code class="sig-name descname"><span class="pre">train_dataloader</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.data.data_modules.DataModule.train_dataloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the train dataloader</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the train dataloader</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>torch.utils.data.Dataloader</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="scaleSSD.data.data_modules.DataModule.val_dataloader">
+<code class="sig-name descname"><span class="pre">val_dataloader</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.data.data_modules.DataModule.val_dataloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the val dataloader</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the val dataloader</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>torch.utils.data.Dataloader</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-scaleSSD.data.transforms">
+<span id="scalessd-data-transforms"></span><h2>scaleSSD.data.transforms<a class="headerlink" href="#module-scaleSSD.data.transforms" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="scaleSSD.data.transforms.RGBTransformer">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">scaleSSD.data.transforms.</span></code><code class="sig-name descname"><span class="pre">RGBTransformer</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.data.transforms.RGBTransformer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is responsible for transforming rgb model input 
+data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input_size</strong> (<em>tuple</em><em>(</em><em>int</em><em>, </em><em>int</em><em>)</em>) – specified image input size for
+resizing</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="scaleSSD.data.transforms.RGBTransformer.transform_image">
+<code class="sig-name descname"><span class="pre">transform_image</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bboxes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_labels</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scaleSSD.data.transforms.RGBTransformer.transform_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform an image by applying all albumentations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>numpy array</em>) – the input image of the model</p></li>
+<li><p><strong>bboxes</strong> (<em>numpy array</em>) – an array containing the annotation boxes of the image</p></li>
+<li><p><strong>class_labels</strong> (<em>numpy array</em>) – an array containing the class labels for the boxes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the transformed image, bboxes, class_labels</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple(list, list, list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-scaleSSD.data"></span></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="scaleSSD.engine.html" class="btn btn-neutral float-right" title="scaleSSD.engine" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="scaleSSD.html" class="btn btn-neutral float-left" title="scaleSSD" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Up2metric.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
